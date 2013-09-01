@@ -16,8 +16,6 @@ function SessionsDAO(db) {
     this.startSession = function(username, callback) {
         "use strict";
 
-        
-
         // Generate session id
         var current_date = (new Date()).valueOf().toString();
         var random = Math.random().toString();

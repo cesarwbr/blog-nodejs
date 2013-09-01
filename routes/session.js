@@ -126,6 +126,7 @@ function SessionHandler (db) {
         if (validateSignup(username, password, verify, email, errors)) {
             users.addUser(username, password, email, function(err, user) {
                 "use strict";
+
                 if (err) {
                     // this was a duplicate
                     if (err.code == '11000') {
@@ -137,7 +138,6 @@ function SessionHandler (db) {
                         return next(err);
                     }
                 }
-
 
                 sessions.startSession(user['_id'], function(err, session_id) {
                     "use strict";

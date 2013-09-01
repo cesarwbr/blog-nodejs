@@ -30,7 +30,14 @@ function PostsDAO(db) {
 
         // now insert the post
         // hw3.2 TODO
-        callback(Error("insertEntry Not Yet Implemented!"), null);
+        posts.insert(post, {safe: false}, function(err, records){
+            "use strict";
+
+            if (err) return callback(err, null);
+            console.log("blog entry inseted successfully!");
+            callback(err, records[0].permalink);
+        });
+        //callback(Error("insertEntry NYI"), null);
     }
 
     this.getPosts = function(num, callback) {
@@ -82,7 +89,7 @@ function PostsDAO(db) {
         }
 
         // hw3.3 TODO
-        callback(Error("addComment Not Yet Implemented!"), null);
+        callback(Error("addComment NYI"), null);
     }
 }
 
