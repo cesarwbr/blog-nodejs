@@ -30,14 +30,14 @@ function PostsDAO(db) {
 
         // now insert the post
         // hw3.2 TODO
-        posts.insert(post, {safe: false}, function(err, records){
+        posts.insert(post, function (err, result) {
             "use strict";
 
             if (err) return callback(err, null);
-            console.log("blog entry inseted successfully!");
-            callback(err, records[0].permalink);
+
+            console.log("Inserted new post");
+            callback(err, permalink);
         });
-        //callback(Error("insertEntry NYI"), null);
     }
 
     this.getPosts = function(num, callback) {
@@ -89,11 +89,13 @@ function PostsDAO(db) {
         }
 
         // hw3.3 TODO
-        posts.update({permalink: permalink}, {"$push": {comments: comment}}, function(err, updated){
+        posts.update({'permalink': permalink}, {'$push': {'comments': comment}}, function(err, numModified) {
+            "use strict";
+
             if (err) return callback(err, null);
-            callback(err, updated);
+
+            callback(err, numModified);
         });
-        //callback(Error("addComment NYI"), null);
     }
 }
 
